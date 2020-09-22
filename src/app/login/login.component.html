@@ -1,11 +1,41 @@
 <div class="container">
-    <form>
-        <input type="text" placeholder="Enter User Name" formControlName="username">
-        <input type="password" placeholder="Enter Password" formControlName="password">
-        <button pButton label="Submit"></button>
-        <button pButton pRipple type="button" label="Primary"></button>
-        <p-button label="Submit"></p-button>
-        <button pButton pRipple type="button" label="Info" class="p-button-rounded p-button-info"></button>
+    <div class="card" *ngIf="isLogin">
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+                <div class="row">
+                    <input pInputText type="text" placeholder="Enter User Name" formControlName="username">
+                </div>
+                <div class="row">
+                    <input pInputText type="password" placeholder="Enter Password" formControlName="password">
+                </div>
+                <div class="row justify-content-center">
+                    <button pButton type="submit" label="Submit"></button>
+                </div>
+            </form>
+            <div class="row justify-content-center"><small (click)="isLogin=!isLogin">Create an Account</small></div>
+        </div>
+    </div>
 
-    </form>
+    <div class="card" *ngIf="!isLogin">
+        <div class="card-body">
+            <form [formGroup]="regForm" (ngSubmit)="onRegestration(regForm.value)">
+                <div class="row">
+                    <input pInputText type="email" placeholder="Enter Email" formControlName="email">
+                </div>
+                <div class="row">
+                    <input pInputText type="password" placeholder="Enter Password" formControlName="password">
+                </div>
+                <div class="row">
+                    <input pInputText type="password" placeholder="Confirm Password" formControlName="c_pwd">
+                </div>
+                <div class="row justify-content-center">
+                    <button pButton type="submit" label="Register" class="p-button-success"></button>
+                    <span class="ml-2 mr-2"></span>
+                    <button pButton type="reset" label="Clear" class="p-button-secondary"></button>
+                </div>
+                <div class="row justify-content-center"><small (click)="isLogin=!isLogin">Go To Login</small></div>
+            </form>
+        </div>
+    </div>
+
 </div>

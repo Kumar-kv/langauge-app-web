@@ -1,0 +1,18 @@
+.card{
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    height: max-content;
+    right: 0;
+    left: 0;
+    width: max-content;
+    margin: auto;
+    padding: 20px;
+}
+
+input{
+    width: 200px;
+}
+.row{
+    margin-top: 15px;
+}
