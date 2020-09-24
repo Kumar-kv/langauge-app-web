@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LanguageService } from '../shared/language.service';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,12 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   regForm:FormGroup;
   isLogin:boolean = true;
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private service:LanguageService) { }
 
   ngOnInit(): void {
-
+    this.service.getCall('users').subscribe(res=>{
+      console.log(res);
+    })
     this.initiateLFOrm(); 
     this.initiateRFOrm(); 
   }
@@ -36,10 +39,22 @@ export class LoginComponent implements OnInit {
 
   onLogin(fd){
     console.log(fd);
+    this.service.login(fd).subscribe(res=>{
+      console.log(res);
+    })
   }
 
   onRegestration(fd){
-    console.log(fd);
+    if(fd.password!==fd.c_pwd){
+      alert("Passwords should be same");
+      return;
+    }
+    delete fd.c_pwd;
+    fd.created_on = new Date();
+    fd.realm = 'user';
+    this.service.userRegister(fd).subscribe(res=>{
+      console.log(res);
+    })
   }
 
 }
