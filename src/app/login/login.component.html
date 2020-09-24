@@ -3,7 +3,7 @@
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
                 <div class="row">
-                    <input pInputText type="text" placeholder="Enter User Name" formControlName="username">
+                    <input pInputText type="text" placeholder="Enter User Name/ Email" formControlName="username">
                 </div>
                 <div class="row">
                     <input pInputText type="password" placeholder="Enter Password" formControlName="password">

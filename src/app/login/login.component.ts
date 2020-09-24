@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LanguageService } from '../shared/language.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   regForm:FormGroup;
   isLogin:boolean = true;
-  constructor(private fb:FormBuilder, private service:LanguageService) { }
+  constructor(private fb:FormBuilder, private service:LanguageService, private router:Router) { }
 
   ngOnInit(): void {
     this.service.getCall('users').subscribe(res=>{
@@ -39,8 +40,14 @@ export class LoginComponent implements OnInit {
 
   onLogin(fd){
     console.log(fd);
+    let pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    pattern.test(fd.username)?(fd.email = fd.username, delete fd.username):"";
     this.service.login(fd).subscribe(res=>{
-      console.log(res);
+      let response:any = {};
+      response = res;
+      localStorage.setItem("law_user", JSON.stringify(response));
+      let realm = response.user.realm;
+      this.router.navigate([realm]);
     })
   }
 
