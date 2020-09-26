@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LanguageService {
 baseUrl = environment.baseUrl;
+// access_token = localStorage.getItem("law_user")==null?"":JSON.parse(localStorage.getItem("law_user")).id ;
   constructor(private http:HttpClient) { }
 
   postHeaders() {
@@ -22,6 +23,13 @@ login(creds){
   let headers = this.postHeaders();
   return this.http.post(url,creds,{headers:headers});
 }
+
+logout(){
+  let url = `${this.baseUrl}users/logout?access_token=${JSON.parse(localStorage.getItem("law_user")).id}`;
+  let headers = this.postHeaders();
+  return this.http.post(url,{headers:headers});
+}
+
 
 userRegister(data){
   let url = `${this.baseUrl}users`;

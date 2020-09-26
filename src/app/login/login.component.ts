@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LanguageService } from '../shared/language.service';
@@ -8,10 +8,12 @@ import { LanguageService } from '../shared/language.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   regForm:FormGroup;
   isLogin:boolean = true;
+  @Output() showHeaderEmit = new EventEmitter<boolean>();
   constructor(private fb:FormBuilder, private service:LanguageService, private router:Router) { }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("law_user", JSON.stringify(response));
       let realm = response.user.realm;
       this.router.navigate([realm]);
+      this.showHeaderEmit.emit(true);
     })
   }
 
