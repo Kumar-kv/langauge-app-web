@@ -4,7 +4,17 @@
         Langauge App
         <button (click)="onLogout()">Logout</button>
     </div>
-    <router-outlet></router-outlet>
-    <app-login (showHeaderEmit)="onChildOutput($event)" *ngIf="!showHeader"></app-login>
+    <div class="row appbody">
+        <div class="col-md-12 sideNavRow">
+            <mat-drawer-container autosize class="example-container">
+                <mat-drawer class="example-sidenav" mode="side" [opened]="showSideMenu">
+                   <p style="background-color: aqua;"> sdgsdglkjsdg </p>
+                </mat-drawer>
+                <router-outlet></router-outlet>
+                <app-login (showHeaderEmit)="onChildOutput($event)" *ngIf="!showHeader"></app-login>
+            </mat-drawer-container>
+        </div>
+    </div>
+
 </div>
 

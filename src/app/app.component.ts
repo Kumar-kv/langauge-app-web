@@ -7,17 +7,19 @@ import { LanguageService } from './shared/language.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit { 
   title = 'language-app-web';
   showHeader: boolean = false;
+  showSideMenu:boolean = false;
   constructor(private service:LanguageService, private router:Router) {
-
+    
   }
   ngOnInit() {
     this.showHeader = localStorage.getItem("law_user")==null?false:true;
   }
   onChildOutput(e){
       this.showHeader = e;
+      this.showSideMenu = e;
   }
 
   onLogout(){

@@ -25,6 +25,7 @@ import { CarouselModule } from 'primeng/carousel';
 import {TooltipModule} from 'primeng/tooltip';
 import {SliderModule} from 'primeng/slider';
 import {CheckboxModule} from 'primeng/checkbox';
+import {SidebarModule} from 'primeng/sidebar';
 
 const primeModules = [
   CommonModule,
@@ -51,7 +52,8 @@ const primeModules = [
   CarouselModule,
   TooltipModule,
   SliderModule,
-  CheckboxModule
+  CheckboxModule,
+  SidebarModule
 ]
 
 @NgModule({
