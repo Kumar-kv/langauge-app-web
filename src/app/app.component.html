@@ -1,14 +1,16 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center jumbotron" *ngIf="showHeader">
-        Langauge App
+        Langauge App 
         <button (click)="onLogout()">Logout</button>
     </div>
     <div class="row appbody">
         <div class="col-md-12 sideNavRow">
             <mat-drawer-container autosize class="example-container">
-                <mat-drawer class="example-sidenav" mode="side" [opened]="showSideMenu">
-                   <p style="background-color: aqua;"> sdgsdglkjsdg </p>
+                <mat-drawer class="example-sidenav" mode="side" [opened]="showSideMenu" (mouseenter)="onMouseOver()" (mouseleave)="onMouseOut()">
+                        <div *ngFor="let item of sideMenuItems">
+                            <i class="{{'fa '+item.icon}}" aria-hidden="true"></i> {{expandNav?item.name:''}} 
+                        </div>
                 </mat-drawer>
                 <router-outlet></router-outlet>
                 <app-login (showHeaderEmit)="onChildOutput($event)" *ngIf="!showHeader"></app-login>
