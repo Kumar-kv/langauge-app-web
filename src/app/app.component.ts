@@ -14,25 +14,29 @@ export class AppComponent implements OnInit {
   userMenu:any=[];
   adminMenu:any=[];
   sideMenuItems:any=[];
-  realm:String;
+  realm:string;
   expandNav:boolean=false;
+  activeTabId:number=1;
   constructor(private service:LanguageService, private router:Router) {
     
   }
   ngOnInit() {
     this.userMenu=[
-      {tabInd:1,name:'UM 1',path:'um1', icon:'fa-address-book'},
-      {tabInd:2,name:'UM 2',path:'um2', icon:'fa-eercast'},
-      {tabInd:3,name:'UM 3',path:'um3', icon:'fa-superpowers'},
-      {tabInd:4,name:'UM 4',path:'um4', icon:'fa-thermometer-quarter'},
+      {tabInd:1,name:'Dashboard',path:'', icon:'fa-home'},
+      {tabInd:2,name:'Noun',path:'nouns', icon:'fa-address-book'},
+      {tabInd:3,name:'Number',path:'numbers', icon:'fa-eercast'},
+      {tabInd:4,name:'Pronoun',path:'pronouns', icon:'fa-superpowers'},
+      {tabInd:5,name:'Verb',path:'verbs', icon:'fa-thermometer-quarter'},
     ];
     this.adminMenu=[
-      {tabInd:1,name:'AM 1',path:'am1', icon:'fa-address-book'},
-      {tabInd:2,name:'AM 2',path:'am2', icon:'fa-eercast'},
-      {tabInd:3,name:'AM 3',path:'am3', icon:'fa-superpowers'},
-      {tabInd:4,name:'AM 4',path:'am4', icon:'fa-thermometer-quarter'},
+      {tabInd:1,name:'Dashboard',path:'', icon:'fa-home'},
+      {tabInd:2,name:'AM 1',path:'am1', icon:'fa-address-book'},
+      {tabInd:3,name:'AM 2',path:'am2', icon:'fa-eercast'},
+      {tabInd:4,name:'AM 3',path:'am3', icon:'fa-superpowers'},
+      {tabInd:5,name:'AM 4',path:'am4', icon:'fa-thermometer-quarter'},
     ];
     this.onChildOutput();
+    localStorage.getItem("activeTabId")==null?'':this.activeTabId = JSON.parse(localStorage.getItem("activeTabId"));
   }
 
   onChildOutput(e?){
@@ -47,10 +51,12 @@ export class AppComponent implements OnInit {
       console.log(res);
       this.router.navigate([""]);
       localStorage.removeItem("law_user");
+      localStorage.removeItem("activeTabId");
       this.showHeader = false;  
       this.showSideMenu = false;
       this.sideMenuItems=[];
       this.expandNav=false;
+      this.activeTabId = 1;
     })
   }
 
@@ -61,6 +67,15 @@ export class AppComponent implements OnInit {
 
   onMouseOut(){
     this.expandNav=false;
+  }
+
+
+
+  onMenuItemClick(e){
+    console.log(e.path);
+    this.activeTabId = e.tabInd;
+    localStorage.setItem("activeTabId", JSON.stringify(this.activeTabId));
+    this.router.navigate([this.realm+"/"+e.path]);
   }
 
 }

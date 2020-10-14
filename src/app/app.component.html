@@ -8,7 +8,7 @@
         <div class="col-md-12 sideNavRow">
             <mat-drawer-container autosize class="example-container">
                 <mat-drawer class="example-sidenav" mode="side" [opened]="showSideMenu" (mouseenter)="onMouseOver()" (mouseleave)="onMouseOut()">
-                        <div *ngFor="let item of sideMenuItems">
+                        <div *ngFor="let item of sideMenuItems" [ngClass]="activeTabId==item.tabInd?'activeMenuItemClass':'menuItemClass'" (click)="onMenuItemClick(item)">
                             <i class="{{'fa '+item.icon}}" aria-hidden="true"></i> {{expandNav?item.name:''}} 
                         </div>
                 </mat-drawer>

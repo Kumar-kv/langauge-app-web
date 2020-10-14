@@ -45,7 +45,7 @@ postCall(data,model){
 }
 
 getCall(model){
-  let url = `${this.baseUrl}${model}?filter={"order":"created_on DESC"}`;
+  let url = `${this.baseUrl}${model}?filter={"order":"createdOn DESC"}`;
   return this.http.get(url);
 }
 

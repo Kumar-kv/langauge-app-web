@@ -20,3 +20,24 @@
 .appbody{
     flex-grow: 1;
 }
+.menuItemClass{
+    font-size: 16px;
+    font-weight: 550;
+    line-height: 2;
+    padding: 5px;
+    cursor: pointer;
+    border: lightgray 1px solid;
+    color: black;
+    background-color: white;
+}
+
+.activeMenuItemClass{
+    font-size: 16px;
+    font-weight: 550;
+    line-height: 2;
+    padding: 5px;
+    cursor: pointer;
+    border: lightgray 1px solid;
+    color: white;
+    background-color: black;
+}
