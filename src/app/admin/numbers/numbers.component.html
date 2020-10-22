@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="numbersForm" (onSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-4">
+                    <div class="row">
+                        <label for="english">English:</label>
+                        <input type="text" name="english" placeholder="Enter English Word" formControlName="english">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label for="french">French:</label>
+                        <input type="text" name="french" placeholder="Enter French Word" formControlName="target_translation">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <button class="btn btn-success" type="submit" [disabled]="!numbersForm.valid?true:false">Submit</button>
+                        <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

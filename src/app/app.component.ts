@@ -30,10 +30,10 @@ export class AppComponent implements OnInit {
     ];
     this.adminMenu=[
       {tabInd:1,name:'Dashboard',path:'', icon:'fa-home'},
-      {tabInd:2,name:'AM 1',path:'am1', icon:'fa-address-book'},
-      {tabInd:3,name:'AM 2',path:'am2', icon:'fa-eercast'},
-      {tabInd:4,name:'AM 3',path:'am3', icon:'fa-superpowers'},
-      {tabInd:5,name:'AM 4',path:'am4', icon:'fa-thermometer-quarter'},
+      {tabInd:2,name:'Noun',path:'nouns', icon:'fa-address-book'},
+      {tabInd:3,name:'Number',path:'numbers', icon:'fa-eercast'},
+      {tabInd:4,name:'Pronoun',path:'pronouns', icon:'fa-superpowers'},
+      {tabInd:5,name:'Verb',path:'verbs', icon:'fa-thermometer-quarter'}
     ];
     this.onChildOutput();
     localStorage.getItem("activeTabId")==null?'':this.activeTabId = JSON.parse(localStorage.getItem("activeTabId"));
