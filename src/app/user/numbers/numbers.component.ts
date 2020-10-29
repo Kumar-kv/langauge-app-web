@@ -22,7 +22,7 @@ export class NumbersComponent implements OnInit {
   }
 
   getAllNumbers(){
-    this.ls.getCall(this.modelName).subscribe(res=>{
+    this.ls.getCall(this.modelName,"ASC").subscribe(res=>{
       console.log(res);
       this.allNumbers = res;
     })

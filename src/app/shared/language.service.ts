@@ -41,11 +41,12 @@ userRegister(data){
 postCall(data,model){
   let url = `${this.baseUrl}${model}`;
   let headers = this.postHeaders();
-  return this.http.post(url,data,{headers:headers});
+  return this.http.post(url,data,{headers:headers}); 
 }
 
-getCall(model){
-  let url = `${this.baseUrl}${model}?filter={"order":"createdOn DESC"}`;
+getCall(model,sOrder){
+  let url = `${this.baseUrl}${model}?filter={"order":"createdOn ${sOrder}"}`;
+  console.log(url);
   return this.http.get(url);
 }
 

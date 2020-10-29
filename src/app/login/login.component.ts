@@ -17,9 +17,6 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder, private service:LanguageService, private router:Router) { }
 
   ngOnInit(): void {
-    this.service.getCall('users').subscribe(res=>{
-      console.log(res);
-    })
     this.initiateLFOrm(); 
     this.initiateRFOrm(); 
   }
@@ -60,7 +57,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     delete fd.c_pwd;
-    fd.created_on = new Date();
     fd.realm = 'user';
     this.service.userRegister(fd).subscribe(res=>{
       console.log(res);
